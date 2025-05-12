@@ -41,6 +41,8 @@ These instructions are essential, so please read them all carefully.
 -   Please disclose below who you collaborated with and if you've used
     ChatGPT (or any comparable AI tool) to what extent when completing
     this homework. See the syllabus for the course expectations.
+    
+    I used ChatGPT to develop both functions.
 
 (Note: This homework is substantially more challenging than Homework 2
 since this homework is much more open-ended. If you feel stuck in this
