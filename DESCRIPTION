@@ -1,11 +1,10 @@
 Package: UWBiost561
-Title: What the Package Does (One Line, Title Case)
+Title: Generate Partial Clique and Compute Maximal Partial Clique
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Breanna", "Brown", , "bbrown34@uw.edu", role = c("aut", "cre"))
+Description: This package includes two functions: generate_partial_clique creates an adjacency matrix with a partial clique. compute_maximal_partial_clique finds the largest partial clique in an adjacency matrix and returns a vector of the node indices in the clique and the edge density of the partial clique. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
