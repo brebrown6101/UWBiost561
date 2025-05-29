@@ -13,6 +13,7 @@ Suggests:
     rmarkdown, 
     bookdown,
     tidyverse,
-    ggplot2
+    ggplot2,
+    devtools
 VignetteBuilder: knitr
 URL: https://brebrown6101.github.io/UWBiost561/
