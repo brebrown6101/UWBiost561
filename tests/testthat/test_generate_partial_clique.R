@@ -1,4 +1,4 @@
-
+library(testthat)
 context("Testing generate_partial_clique")
 
 test_that("generate_partial_clique works", {

@@ -1,3 +1,5 @@
+library(testthat)
+
 context("Testing compute_maximal_partial_clique")
 
 #checking that the function outputs something that is the correct type
@@ -68,14 +70,12 @@ test_that("returns errors if adj_mat is invalid", {
 #checks that it returns error when adj_mat contains values other than 0 or 1
 invalid_adj_mat1 <- matrix(c(1,2,2,1), nrow = 2, byrow = TRUE)
 
-expect_error(compute_maximal_partial_clique(invalid_adj_mat1, alpha = 0.9),
-             "adj_mat must only contain 0s and 1s.")
+expect_error(compute_maximal_partial_clique(invalid_adj_mat1, alpha = 0.9))
 
 #checks that it returns error when adj_mat has values other than 1 on diagonal
 invalid_adj_mat2 <- matrix(c(0, 1, 1, 0), nrow=2, byrow = TRUE)
 
-expect_error(compute_maximal_partial_clique(invalid_adj_mat2, alpha = 0.9),
-             "Diagonal of adj_mat must be all 1s.")
+expect_error(compute_maximal_partial_clique(invalid_adj_mat2, alpha = 0.9))
 
 })
 

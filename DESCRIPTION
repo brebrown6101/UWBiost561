@@ -14,6 +14,7 @@ Suggests:
     bookdown,
     tidyverse,
     ggplot2,
-    devtools
+    devtools, 
+    testthat
 VignetteBuilder: knitr
 URL: https://brebrown6101.github.io/UWBiost561/
