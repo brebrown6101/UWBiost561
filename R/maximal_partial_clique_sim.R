@@ -1,16 +1,23 @@
-#' Run a simulation of maximal partial clique computing implementations
+#' Run a simulation of maximal partial clique computing for compute_maximal_partial_clique function
 #'
-#' @param imp_numbers number of implementations
+#'
 #' @param trials number of trials to be ran for each level per implementation
 #' @param alpha_vec vector of alpha levels. Alpha is a numeric threshold between 1 and 0.5 indicating required edge density
 #' @param n_vec vector of n levels. n is the number of nodes in the graph
 #'
-#' @return a nested list with results for each level, each trial, and each implementation
+#' @return a nested list with results for each level and each trial
+#' @examples
+#' trials <- 2
+#' alpha_vec <- c(0.50, 0.75, 0.95)
+#' n_vec <- c(10, 25, 45)
+#' maximal_partial_clique_sim(trials,alpha_vec,n_vec)
+#'
 #' @export
-maximal_partial_clique_sim <- function(imp_numbers = 1:15,
-                               trials = 4,
-                               alpha_vec = c(0.50, 0.75, 0.95),
-                               n_vec = c(10, 25, 45)
+#'
+maximal_partial_clique_sim <- function(
+                               trials,
+                               alpha_vec,
+                               n_vec
                                ) {
 
 stopifnot(length(alpha_vec) == length(n_vec))
@@ -21,6 +28,7 @@ for(i in seq_along(alpha_vec)){
   alpha <- alpha_vec[i]
   n <- n_vec[i]
   print(paste("Value of alpha:", alpha, 'Value of n:', n))
+
   level_results <- vector("list", trials)
 
   # loop over the different trials for this level
@@ -34,21 +42,31 @@ for(i in seq_along(alpha_vec)){
                                                 clique_edge_density = 0.9)
     adj_mat <- data$adj_mat
 
-    trial_results <- vector("list", length(imp_numbers))
-
-    # loop over the methods for this trial
-    result_list <- lapply(imp_numbers, function(imp_number){
-      set.seed(trial) # to freeze the randomness of the method
+      imp_number <- 1
+      set.seed(trial)
       cat('*')
-      result <- UWBiost561::compute_maximal_partial_clique_master(
-        adj_mat = adj_mat,
-        alpha = alpha,
-        number = imp_number,
-        time_limit = 30
-      )
 
+      result <- tryCatch({
+        UWBiost561::compute_maximal_partial_clique_master(
+          adj_mat = adj_mat,
+          alpha = alpha,
+          number = imp_number,
+          time_limit = 30
+        )
+      }, error = function(e) {
+        message(sprintf("❌ Error in imp_number %d, trial %d: %s",
+                        imp_number, trial, e$message))
+        list(clique_idx = NA, edge_density = NA, status = "error", valid = FALSE)
+      })
 
-      return(list(
+      # Ensure no crash due to bad clique_idx
+      clique_size <- if (!is.null(result$clique_idx) && is.numeric(result$clique_idx)) {
+        length(result$clique_idx)
+      } else {
+        NA
+      }
+
+      trial_results <- list(list(
         status = result$status,
         clique_size = if(!is.null(result$clique_idx)) length(result$clique_idx) else NA,
         edge_density = result$edge_density,
@@ -56,10 +74,7 @@ for(i in seq_along(alpha_vec)){
         time = result$time
       ))
 
-    })
-
-    trial_results <- result_list
-    names(trial_results) <- paste("Implementation:", imp_numbers)
+    names(trial_results) <- paste("Implementation:", imp_number)
     level_results[[trial]] <- trial_results
 }
 

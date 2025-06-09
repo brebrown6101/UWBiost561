@@ -2,18 +2,11 @@
 % Please edit documentation in R/maximal_partial_clique_sim.R
 \name{maximal_partial_clique_sim}
 \alias{maximal_partial_clique_sim}
-\title{Run a simulation of maximal partial clique computing implementations}
+\title{Run a simulation of maximal partial clique computing for compute_maximal_partial_clique function}
 \usage{
-maximal_partial_clique_sim(
-  imp_numbers = 1:15,
-  trials = 4,
-  alpha_vec = c(0.5, 0.75, 0.95),
-  n_vec = c(10, 25, 45)
-)
+maximal_partial_clique_sim(trials, alpha_vec, n_vec)
 }
 \arguments{
-\item{imp_numbers}{number of implementations}
-
 \item{trials}{number of trials to be ran for each level per implementation}
 
 \item{alpha_vec}{vector of alpha levels. Alpha is a numeric threshold between 1 and 0.5 indicating required edge density}
@@ -21,8 +14,15 @@ maximal_partial_clique_sim(
 \item{n_vec}{vector of n levels. n is the number of nodes in the graph}
 }
 \value{
-a nested list with results for each level, each trial, and each implementation
+a nested list with results for each level and each trial
 }
 \description{
-Run a simulation of maximal partial clique computing implementations
+Run a simulation of maximal partial clique computing for compute_maximal_partial_clique function
+}
+\examples{
+trials <- 2
+alpha_vec <- c(0.50, 0.75, 0.95)
+n_vec <- c(10, 25, 45)
+maximal_partial_clique_sim(trials,alpha_vec,n_vec)
+
 }

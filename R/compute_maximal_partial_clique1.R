@@ -9,8 +9,21 @@
 #'   \item{clique_idx}{Vector of node indices in the maximal partial clique.}
 #'   \item{edge_density}{Density of the subgraph induced by clique_idx.}
 #' }
+#' @examples
+#' n <- 10
+#' clique_fraction <- 0.5
+#' clique_edge_density <- 0.5
+#' alpha <- 0.9
+#' #generate partial clique
+#' graph <- generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
+#' adj_mat <- data$adj_mat
+#' #compute maximal partial clique
+#' compute_maximal_partial_clique1(adj_mat, alpha, verbose = FALSE)
+#'
 #' @export
 compute_maximal_partial_clique1 <- function(adj_mat, alpha, verbose = FALSE) {
+
+
   # --- Input Validation ---
   if (!is.matrix(adj_mat)) stop("adj_mat must be a matrix.")
   if (!all(adj_mat %in% c(0, 1))) stop("adj_mat must only contain 0s and 1s.")
@@ -22,11 +35,11 @@ compute_maximal_partial_clique1 <- function(adj_mat, alpha, verbose = FALSE) {
   if (n < 5 || n > 50) stop("adj_mat must be between 5 and 50 rows/columns.")
   if (!is.numeric(alpha) || length(alpha) != 1 || alpha < 0.5 || alpha > 1)
     stop("alpha must be a single numeric between 0.5 and 1.")
-  
+
   # --- Greedy heuristic to find a large partial clique ---
   best_clique <- c()
   best_density <- 0
-  
+
   # Start from every node to find a good seed
   for (i in 1:n) {
     current <- c(i)
@@ -52,12 +65,12 @@ compute_maximal_partial_clique1 <- function(adj_mat, alpha, verbose = FALSE) {
       best_density <- density
     }
   }
-  
+
   if (verbose) {
     message("Max clique size: ", length(best_clique))
     message("Edge density: ", round(best_density, 4))
   }
-  
+
   return(list(
     clique_idx = sort(best_clique),
     edge_density = best_density

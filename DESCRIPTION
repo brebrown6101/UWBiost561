@@ -3,7 +3,7 @@ Title: Generate Partial Clique and Compute Maximal Partial Clique
 Version: 0.0.0.9000
 Authors@R: 
     person("Breanna", "Brown", , "bbrown34@uw.edu", role = c("aut", "cre"))
-Description: This package includes two functions: generate_partial_clique creates an adjacency matrix with a partial clique. compute_maximal_partial_clique finds the largest partial clique in an adjacency matrix and returns a vector of the node indices in the clique and the edge density of the partial clique. 
+Description: This package includes two functions: generate_partial_clique creates an adjacency matrix with a partial clique. compute_maximal_partial_clique finds the largest partial clique in an adjacency matrix and returns a vector of the node indices in the clique and the edge density of the partial clique. A simulation study is also included in the package to test the validity of the compute_maximal_partial_clique function on increasing in difficulty combinations of alpha and numbers of nodes. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

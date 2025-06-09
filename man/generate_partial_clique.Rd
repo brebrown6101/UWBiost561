@@ -24,3 +24,9 @@ A list with at least one element:
 \description{
 Generate a random adjacency matrix with a partial clique
 }
+\examples{
+n <- 10
+clique_fraction <- 0.5
+clique_edge_density <- 0.5
+generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
+}

@@ -2,8 +2,8 @@ rm(list=ls())
 set.seed(10)
 library(UWBiost561)
 
-imp_numbers = 1:15
-trials = 4
+imp_numbers = 1
+trials = 2
 alpha_vec = c(0.50, 0.75, 0.95)
 n_vec = c(10, 25, 45)
 
