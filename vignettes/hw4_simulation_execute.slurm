@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=hw4-demo
+#SBATCH --job-name=hw4-simulation
 #SBATCH --account=biostat
 #SBATCH --partition=students-12c128g
 

@@ -2,8 +2,6 @@ rm(list=ls())
 set.seed(10)
 library(UWBiost561)
 
-
-
 imp_numbers = 1:15
 trials = 4
 alpha_vec = c(0.50, 0.75, 0.95)
@@ -32,27 +30,37 @@ n_vec = c(10, 25, 45)
 
       trial_results <- vector("list", length(imp_numbers))
 
-      # loop over the methods for this trial
-      result_list <- lapply(imp_numbers, function(imp_number){
-        set.seed(trial) # to freeze the randomness of the method
-        cat('*')
-        result <- UWBiost561::compute_maximal_partial_clique_master(
-          adj_mat = adj_mat,
-          alpha = alpha,
-          number = imp_number,
-          time_limit = 30
-        )
+        result_list <- lapply(imp_numbers, function(imp_number){
+          set.seed(trial)
+          cat('*')
 
+            result <- tryCatch({
+              UWBiost561::compute_maximal_partial_clique_master(
+                adj_mat = adj_mat,
+                alpha = alpha,
+                number = imp_number,
+                time_limit = 30
+              )
+            }, error = function(e) {
+              message(sprintf("❌ Error in imp_number %d, trial %d: %s",
+                              imp_number, trial, e$message))
+              list(clique_idx = NA, edge_density = NA, status = "error", valid = FALSE)
+            })
 
-        return(list(
-          status = result$status,
-          clique_size = if(!is.null(result$clique_idx)) length(result$clique_idx) else NA,
-          edge_density = result$edge_density,
-          valid = result$valid,
-          time = result$time
-        ))
-
-      })
+            # Ensure no crash due to bad clique_idx
+            clique_size <- if (!is.null(result$clique_idx) && is.numeric(result$clique_idx)) {
+              length(result$clique_idx)
+            } else {
+              NA
+            }
+          return(list(
+            status = result$status,
+            clique_size = if (!is.null(result$clique_idx)) length(result$clique_idx) else NA,
+            edge_density = result$edge_density,
+            valid = result$valid,
+            time = result$time
+          ))
+        })
 
       trial_results <- result_list
       names(trial_results) <- paste("Implementation:", imp_numbers)
@@ -70,7 +78,7 @@ n_vec = c(10, 25, 45)
   date_of_run <- Sys.time()
   session_info <- devtools::session_info()
 
-  save(level_trial_list, # save your results
+  save(level_trial_results, # save your results
        alpha_vec, # save which alphas you used (for convenience)
        date_of_run, session_info,
        file = "~/HW4_simulation.RData")

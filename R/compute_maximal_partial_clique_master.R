@@ -53,7 +53,10 @@ compute_maximal_partial_clique_master <- function(adj_mat,
   }
 
   # check if it's a valid partial clique
-  if(!all(is.na(result$clique_idx))){
+  if(!all(is.na(result$clique_idx)) &&
+     all(result$clique_idx %% 1 == 0) &&
+     all(result$clique_idx > 0) &&
+     length(result$clique_idx) <= nrow(adj_mat)){
     true_density <- compute_correct_density(adj_mat = adj_mat,
                                             clique_idx = result$clique_idx)
     valid <- (true_density >= alpha)
