@@ -77,7 +77,8 @@ n_vec = c(10, 25, 45)
   session_info <- devtools::session_info()
 
   save(level_trial_results, # save your results
-       alpha_vec, # save which alphas you used (for convenience)
+       alpha_vec,
+       n_vec,# save which alphas you used (for convenience)
        date_of_run, session_info,
        file = "~/HW4_simulation.RData")
 
