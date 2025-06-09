@@ -72,8 +72,6 @@ n_vec = c(10, 25, 45)
   }
 
   names(level_trial_results) <- paste0("alpha:", alpha_vec, "n:", n_vec)
-  return(level_trial_results)
-
 
   date_of_run <- Sys.time()
   session_info <- devtools::session_info()
@@ -82,5 +80,7 @@ n_vec = c(10, 25, 45)
        alpha_vec, # save which alphas you used (for convenience)
        date_of_run, session_info,
        file = "~/HW4_simulation.RData")
+
+  return(level_trial_results)
 
 
