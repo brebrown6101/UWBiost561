@@ -1,0 +1,35 @@
+---
+title: "Demo"
+output: html_document
+---
+
+This is a demo vignette for the package. We will generate a graph that contains a maximal partial clique, compute the edge density and clique index of the maximal partial clique, then run a quick simulation to verify the function given different numbers of nodes and different levels of alpha.
+
+Load the package first
+```{r}
+library(UWBiost561)
+set.seed(10)
+```
+# Generating a graph with a maximal partial clique
+Let's first create a random adjacency matrix with a predefined number of nodes (n), a predefined fraction of nodes in the clique (clique_fraction), and a predefined edge density within the clique (edge_density).
+```{r}
+n <- 10
+clique_fraction <- 0.5
+clique_edge_density <- 0.5
+#generate partial clique
+graph <- generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
+adj_mat <- graph$adj_mat
+print(adj_mat)
+```
+# Computing the maximal partial clique
+After creating the graph that contains the partial clique, we'll compute the clique index and edge density of the maximal partial clique in the adjacency matrix. We'll designate an alpha level that the maximal partial clique must have an edge density equal or greater than to be considered the maximal partial clique.
+```{r}
+alpha <- 0.9
+#compute maximal partial clique
+compute_maximal_partial_clique1(adj_mat, alpha, verbose = FALSE)
+```
+# Simulation Study 
+Included in this package is also a simulation study that can be ran to test the validity of compute_maximal_partial_clique function on increasing levels of alpha and n. The amount of trials ran for each level should be specified
+```{r}
+maximal_partial_clique_sim(trials = 2,alpha_vec = c(0.5, 0.6, 0.7), n_vec = c(10, 20, 30))
+```
