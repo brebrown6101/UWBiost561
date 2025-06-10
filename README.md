@@ -1,4 +1,8 @@
 
+This is a package centered around the development of partial cliques and
+identification of largest partial cliques in finite graph
+representations.
+
 # Purpose
 
 - The URL to the GitHub (i.e. the source code) is:
