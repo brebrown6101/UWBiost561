@@ -54,7 +54,7 @@ for(i in seq_along(alpha_vec)){
           time_limit = 30
         )
       }, error = function(e) {
-        message(sprintf("❌ Error in imp_number %d, trial %d: %s",
+        message(sprintf("rror in imp_number %d, trial %d: %s",
                         imp_number, trial, e$message))
         list(clique_idx = NA, edge_density = NA, status = "error", valid = FALSE)
       })

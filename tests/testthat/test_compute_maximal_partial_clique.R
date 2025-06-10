@@ -12,7 +12,7 @@ test_that("compute_maximal_partial_clique works", {
 
   adj_mat <- simulation$adj_mat
 
-  res <- compute_maximal_partial_clique(
+  res <- compute_maximal_partial_clique1(
     adj_mat = adj_mat,
     alpha = 0.9
   )
@@ -70,12 +70,12 @@ test_that("returns errors if adj_mat is invalid", {
 #checks that it returns error when adj_mat contains values other than 0 or 1
 invalid_adj_mat1 <- matrix(c(1,2,2,1), nrow = 2, byrow = TRUE)
 
-expect_error(compute_maximal_partial_clique(invalid_adj_mat1, alpha = 0.9))
+expect_error(compute_maximal_partial_clique1(invalid_adj_mat1, alpha = 0.9))
 
 #checks that it returns error when adj_mat has values other than 1 on diagonal
 invalid_adj_mat2 <- matrix(c(0, 1, 1, 0), nrow=2, byrow = TRUE)
 
-expect_error(compute_maximal_partial_clique(invalid_adj_mat2, alpha = 0.9))
+expect_error(compute_maximal_partial_clique1(invalid_adj_mat2, alpha = 0.9))
 
 })
 
@@ -88,7 +88,7 @@ test_that("compute_maximal_partial_clique is correct", {
   expected_clique_idx <- c(3, 4, 5)
   expected_edge_density <- 2*2 / (3*(3-1))
 
-  res <- compute_maximal_partial_clique(
+  res <- compute_maximal_partial_clique1(
     adj_mat = adj_mat,
     alpha = 0.6
   )
@@ -112,7 +112,7 @@ test_that("same output for repeated adjacency matrix", {
     adj_mat1 <- simulation1$adj_mat
 
 set.seed(10)
-    res1 <- compute_maximal_partial_clique(
+    res1 <- compute_maximal_partial_clique1(
       adj_mat = adj_mat1,
       alpha = 0.9
     )
@@ -125,7 +125,7 @@ set.seed(10)
       adj_mat2 <- simulation2$adj_mat
 
 set.seed(10)
-      res2 <- compute_maximal_partial_clique(
+      res2 <- compute_maximal_partial_clique1(
         adj_mat = adj_mat2,
         alpha = 0.9
       )

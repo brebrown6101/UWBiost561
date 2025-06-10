@@ -30,7 +30,7 @@ clique_edge_density <- 0.5
 alpha <- 0.9
 #generate partial clique
 graph <- generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
-adj_mat <- data$adj_mat
+adj_mat <- graph$adj_mat
 #compute maximal partial clique
 compute_maximal_partial_clique1(adj_mat, alpha, verbose = FALSE)
 

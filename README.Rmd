@@ -1,9 +1,11 @@
 ---
 output: github_document
 ---
-This is a package centered around the development of partial cliques and identification of largest partial cliques in finite graph representations.  
 
 # Purpose
+
+This is a package centered around the development of partial cliques and identification of largest partial cliques in finite graph representations.  
+
 - The URL to the GitHub (i.e. the source code) is: https://github.com/brebrown6101/UWBiost561
 - The URL to the PkgDown webpage is: file:///Users/breannabrown/Desktop/BIOST561/UWBiost561/docs/index.html
 

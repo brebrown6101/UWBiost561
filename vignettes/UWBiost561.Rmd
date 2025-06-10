@@ -14,8 +14,8 @@ set.seed(10)
 Let's first create a random adjacency matrix with a predefined number of nodes (n), a predefined fraction of nodes in the clique (clique_fraction), and a predefined edge density within the clique (edge_density).
 ```{r}
 n <- 10
-clique_fraction <- 0.5
-clique_edge_density <- 0.5
+clique_fraction <- 0.6
+clique_edge_density <- 0.7
 #generate partial clique
 graph <- generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
 adj_mat <- graph$adj_mat
@@ -31,5 +31,5 @@ compute_maximal_partial_clique1(adj_mat, alpha, verbose = FALSE)
 # Simulation Study 
 Included in this package is also a simulation study that can be ran to test the validity of compute_maximal_partial_clique function on increasing levels of alpha and n. The amount of trials ran for each level should be specified
 ```{r}
-maximal_partial_clique_sim(trials = 2,alpha_vec = c(0.5, 0.6, 0.7), n_vec = c(10, 20, 30))
+maximal_partial_clique_sim(trials = 2, alpha_vec = c(0.5, 0.6, 0.7), n_vec = c(10, 20, 30))
 ```

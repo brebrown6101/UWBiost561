@@ -9,6 +9,7 @@
 #'   \item{clique_idx}{Vector of node indices in the maximal partial clique.}
 #'   \item{edge_density}{Density of the subgraph induced by clique_idx.}
 #' }
+#' @importFrom utils combn
 #' @examples
 #' n <- 10
 #' clique_fraction <- 0.5
@@ -16,7 +17,7 @@
 #' alpha <- 0.9
 #' #generate partial clique
 #' graph <- generate_partial_clique(n, clique_fraction, clique_edge_density, seed = NULL)
-#' adj_mat <- data$adj_mat
+#' adj_mat <- graph$adj_mat
 #' #compute maximal partial clique
 #' compute_maximal_partial_clique1(adj_mat, alpha, verbose = FALSE)
 #'
