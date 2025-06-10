@@ -76,22 +76,22 @@ of nodes (n), a predefined fraction of nodes in the clique
 (edge_density).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span><span class="va">clique_fraction</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
-<span><span class="va">clique_edge_density</span> <span class="op">&lt;-</span> <span class="fl">0.5</span></span>
+<span><span class="va">clique_fraction</span> <span class="op">&lt;-</span> <span class="fl">0.6</span></span>
+<span><span class="va">clique_edge_density</span> <span class="op">&lt;-</span> <span class="fl">0.7</span></span>
 <span><span class="co">#generate partial clique</span></span>
 <span><span class="va">graph</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_partial_clique.html">generate_partial_clique</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">clique_fraction</span>, <span class="va">clique_edge_density</span>, seed <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="va">adj_mat</span> <span class="op">&lt;-</span> <span class="va">graph</span><span class="op">$</span><span class="va">adj_mat</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">adj_mat</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]</span></span>
 <span><span class="co">##  [1,]    1    0    0    0    0    0    0    0    0     0</span></span>
-<span><span class="co">##  [2,]    0    1    0    0    0    0    0    0    0     0</span></span>
-<span><span class="co">##  [3,]    0    0    1    0    0    1    1    0    0     0</span></span>
+<span><span class="co">##  [2,]    0    1    1    0    0    1    1    1    0     0</span></span>
+<span><span class="co">##  [3,]    0    1    1    0    0    0    1    0    0     0</span></span>
 <span><span class="co">##  [4,]    0    0    0    1    0    0    0    0    0     0</span></span>
 <span><span class="co">##  [5,]    0    0    0    0    1    0    0    0    0     0</span></span>
-<span><span class="co">##  [6,]    0    0    1    0    0    1    0    1    0     0</span></span>
-<span><span class="co">##  [7,]    0    0    1    0    0    0    1    1    0     0</span></span>
-<span><span class="co">##  [8,]    0    0    0    0    0    1    1    1    1     0</span></span>
-<span><span class="co">##  [9,]    0    0    0    0    0    0    0    1    1     0</span></span>
+<span><span class="co">##  [6,]    0    1    0    0    0    1    1    1    1     0</span></span>
+<span><span class="co">##  [7,]    0    1    1    0    0    1    1    1    0     0</span></span>
+<span><span class="co">##  [8,]    0    1    0    0    0    1    1    1    1     0</span></span>
+<span><span class="co">##  [9,]    0    0    0    0    0    1    0    1    1     0</span></span>
 <span><span class="co">## [10,]    0    0    0    0    0    0    0    0    0     1</span></span></code></pre>
 </div>
 <div class="section level2">
@@ -107,7 +107,7 @@ considered the maximal partial clique.</p>
 <span><span class="co">#compute maximal partial clique</span></span>
 <span><span class="fu"><a href="../reference/compute_maximal_partial_clique1.html">compute_maximal_partial_clique1</a></span><span class="op">(</span><span class="va">adj_mat</span>, <span class="va">alpha</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $clique_idx</span></span>
-<span><span class="co">## [1] 3 6</span></span>
+<span><span class="co">## [1] 2 6 7 8</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $edge_density</span></span>
 <span><span class="co">## [1] 1</span></span></code></pre>
@@ -120,7 +120,7 @@ to test the validity of compute_maximal_partial_clique function on
 increasing levels of alpha and n. The amount of trials ran for each
 level should be specified</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/maximal_partial_clique_sim.html">maximal_partial_clique_sim</a></span><span class="op">(</span>trials <span class="op">=</span> <span class="fl">2</span>,alpha_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span><span class="op">)</span>, n_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/maximal_partial_clique_sim.html">maximal_partial_clique_sim</a></span><span class="op">(</span>trials <span class="op">=</span> <span class="fl">2</span>, alpha_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span><span class="op">)</span>, n_vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "Value of alpha: 0.5 Value of n: 10"</span></span>
 <span><span class="co">## [1] "Working on trial: 1"</span></span>
 <span><span class="co">## *[1] "Working on trial: 2"</span></span>
